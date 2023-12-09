@@ -1,66 +1,49 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import ExpandingArrow from '@/components/expanding-arrow'
-import Uploader from '@/components/uploader'
-import { Toaster } from '@/components/toaster'
+"use client";
+import Image from "next/image";
+import Link from "next/link";
+import ExpandingArrow from "@/components/expanding-arrow";
+import Uploader from "@/components/uploader";
+import { Toaster } from "@/components/toaster";
+import * as htmlToImage from "html-to-image";
+import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
+import { useRef } from "react";
 
 export default function Home() {
-  return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center">
-      <Toaster />
-      <Link
-        href="https://vercel.com/templates/next.js/blob-starter"
-        className="group mt-20 sm:mt-0 rounded-full flex space-x-1 bg-white/30 shadow-sm ring-1 ring-gray-900/5 text-gray-600 text-sm font-medium px-10 py-2 hover:shadow-lg active:shadow-sm transition-all"
-      >
-        <p>Deploy your own to Vercel</p>
-        <ExpandingArrow />
-      </Link>
-      <h1 className="pt-4 pb-8 bg-gradient-to-br from-black via-[#171717] to-[#575757] bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl">
-        Blob on Vercel
-      </h1>
-      <div className="bg-white/30 p-12 shadow-xl ring-1 ring-gray-900/5 rounded-lg backdrop-blur-lg max-w-xl mx-auto w-full">
-        <Uploader />
-      </div>
-      <p className="font-light text-gray-600 w-full max-w-lg text-center mt-6">
-        <Link
-          href="https://vercel.com/blob"
-          className="font-medium underline underline-offset-4 hover:text-black transition-colors"
-        >
-          Vercel Blob
-        </Link>{' '}
-        demo. Built with{' '}
-        <Link
-          href="https://nextjs.org/docs"
-          className="font-medium underline underline-offset-4 hover:text-black transition-colors"
-        >
-          Next.js App Router
-        </Link>
-        .
-      </p>
-      <div className="sm:absolute sm:bottom-0 w-full px-20 py-10 flex justify-between">
-        <Link href="https://vercel.com">
-          <Image
-            src="/vercel.svg"
-            alt="Vercel Logo"
-            width={100}
-            height={24}
-            priority
-          />
-        </Link>
-        <Link
-          href="https://github.com/vercel/examples/tree/main/storage/blob-starter"
-          className="flex items-center space-x-2"
-        >
-          <Image
-            src="/github.svg"
-            alt="GitHub Logo"
-            width={24}
-            height={24}
-            priority
-          />
-          <p className="font-light">Source</p>
-        </Link>
-      </div>
-    </main>
-  )
+    const elementRef = useRef(null);
+    var node = document.getElementById("my-node");
+
+    const htmlToImageConvert = () => {
+        toPng(elementRef.current!, { cacheBust: false })
+            .then((dataUrl) => {
+                const link = document.createElement("a");
+                link.download = "my-image-name.png";
+                link.href = dataUrl;
+                link.click();
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+    return (
+        <main className="relative flex min-h-screen flex-col items-center justify-center">
+            <h1>hi</h1>
+            <div
+                className="w-96 h-96 bg-red-400 rounded-lg p-4 items-center justify-center text-center text-gray-100"
+                ref={elementRef}
+                id="my-node"
+            >
+                <h2>This is drama by aespa</h2>
+                <p>
+                    Drama-ma-ma-ma (bring it that) Drama-ma-ma-ma With my girls{" "}
+                    <br />
+                    in the back Girls in the back, yeah (I break) <br />
+                    Trauma-ma-ma-ma (we them) Trauma-ma-ma-ma With my world in{" "}
+                    <br />
+                    the back 나로 시작되는 drama (drama) <br />
+                </p>
+            </div>
+            <button onClick={htmlToImageConvert}>Download Image</button>
+        </main>
+    );
 }
