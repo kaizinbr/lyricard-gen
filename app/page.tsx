@@ -7,10 +7,12 @@ import { Toaster } from "@/components/toaster";
 import * as htmlToImage from "html-to-image";
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
 import { useRef } from "react";
+import CardBox from "@/components/card/card-box";
+import Carousel from "@/components/carousel/carousel";
 
 export default function Home() {
     const elementRef = useRef(null);
-    var node = document.getElementById("my-node");
+    // var node = document.getElementById("my-node");
 
     const htmlToImageConvert = () => {
         toPng(elementRef.current!, { cacheBust: false })
@@ -25,9 +27,23 @@ export default function Home() {
             });
     };
 
+    let slides = [
+        "https://i.pinimg.com/originals/51/82/ac/5182ac536727d576c78a9320ac62de30.jpg",
+        "https://wallpapercave.com/wp/wp3386769.jpg",
+        "https://wallpaperaccess.com/full/809523.jpg",
+        "https://getwallpapers.com/wallpaper/full/5/c/0/606489.jpg",
+    ];
+
     return (
-        <main className="relative flex min-h-screen flex-col items-center justify-center">
-            <h1>hi</h1>
+        <main
+            className="relative flex min-h-screen flex-col items-center justify-center"
+            ref={elementRef}
+        >
+            <CardBox />
+            <div className="w-[60%] m-auto pt-11">
+                {/* <Carousel slides={slides} /> */}
+            </div>
+            {/* <h1>hi</h1>
             <div
                 className="w-96 h-96 bg-red-400 rounded-lg p-4 items-center justify-center text-center text-gray-100"
                 ref={elementRef}
@@ -42,8 +58,7 @@ export default function Home() {
                     <br />
                     the back 나로 시작되는 drama (drama) <br />
                 </p>
-            </div>
-            <button onClick={htmlToImageConvert}>Download Image</button>
+            </div> */}
         </main>
     );
 }
