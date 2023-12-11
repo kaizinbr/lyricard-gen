@@ -73,7 +73,7 @@ export default function Uploader({setCoverUrl}: {setCoverUrl: any}) {
 
     return (
         <form
-            className="grid gap-6 w-[348px] max-h-[348px]  "
+            className="grid gap-6 max-w-[316px] max-h-[348px]"
             onSubmit={onSubmit}
         >
             <div>
@@ -186,8 +186,8 @@ export default function Uploader({setCoverUrl}: {setCoverUrl: any}) {
                 className={`${
                     saveDisabled
                         ? "cursor-not-allowed border-gray-200 bg-gray-100 text-gray-400"
-                        : "border-black bg-black text-white hover:bg-white hover:text-black"
-                } flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none`}
+                        : "border-emerald-500 bg-emerald-500 text-white hover:bg-white hover:text-black"
+                } flex h-10 w-full items-center justify-center rounded-full border text-sm transition-all focus:outline-none`}
             >
                 {saving ? (
                     <LoadingDots color="#808080" />

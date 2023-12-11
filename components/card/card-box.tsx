@@ -8,20 +8,20 @@ import Demo from "../color/colorWheel";
 import TextNLogo from "../color/textColor";
 import Carousel from "@/components/carousel/carousel";
 
-import React from 'react'
-import { EmblaOptionsType } from 'embla-carousel-react'
-import '../css/base.css'
-import '../css/sandbox.css'
-import '../css/embla.css'
+import React from "react";
+import { EmblaOptionsType } from "embla-carousel-react";
+import "../css/base.css";
+import "../css/sandbox.css";
+import "../css/embla.css";
 
-const OPTIONS: EmblaOptionsType = {}
-const SLIDE_COUNT = 5
+const OPTIONS: EmblaOptionsType = {};
+const SLIDE_COUNT = 5;
 // const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
 
 export default function CardBox() {
     const [showCopy, setShowCopy] = useState(false);
 
-    const [bgColor, setBgColor] = useState("#ffbe98");
+    const [bgColor, setBgColor] = useState("#A4B8D1");
     const [textColor, setTextColor] = useState("#000000");
     const [logoUrl, setLogoUrl] = useState(
         "/spotify-icons-logos/logos/01_RGB/02_PNG/Spotify_Logo_RGB_Black.png"
@@ -29,7 +29,7 @@ export default function CardBox() {
     const [title, setTitle] = useState("Fabulous");
     const [coverUrl, setCoverUrl] = useState("/txt.jpg");
     const [artist, setArtist] = useState("Taeyeon");
-    const [lyrics, setLyrics] = useState("Caralho! Que pau ignorante");
+    const [lyrics, setLyrics] = useState("Hi my name is");
 
     function handleBgColorChange(e: { target: { value: any } }) {
         setBgColor(e.target.value);
@@ -57,45 +57,58 @@ export default function CardBox() {
         toPng(ref.current, { cacheBust: true, pixelRatio: 2, quality: 1 })
             .then((dataUrl) => {
                 const link = document.createElement("a");
-                link.download = "au.png";
+                link.download = `${title} - ${artist}.png`;
                 link.href = dataUrl;
                 link.click();
             })
             .catch((err) => {
                 console.log(err);
             });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ref]);
 
     let slides = [
         <Demo key={1} setBgColor={setBgColor} />,
-        <Uploader key={2} setCoverUrl={setCoverUrl} />,
-        <TextNLogo
-            key={3}
+        <div
+            className={`
+                w-[348px] 
+                px-4   
+                flex flex-col gap-8
+            `}
+            key={2}
+        >
+            <Uploader setCoverUrl={setCoverUrl} />
+            <TextNLogo
             setTextColor={setTextColor}
             setLogoUrl={setLogoUrl}
-        />,
-        <form key={4} action="" className="flex flex-col gap-2 w-[348px] max-h-[348px] ">
-            <label className="flex flex-col text-xs text-gray-800">
+        />
+        </div>,
+        <form
+            key={3}
+            action=""
+            className="flex flex-col gap-2 px-4 w-[348px] max-h-[348px] "
+        >
+            <label className="flex flex-col text-base text-gray-950 font-extrabold">
                 Título:
                 <input
-                    className="text-base text-black px-2 py-3 outline-none bg-transparent focus:bg-gray-100 rounded-md transition duration-300"
+                    className="text-base font-semibold text-black border-2 border-gray-700 px-2 py-3 outline-none bg-transparent focus:bg-gray-100 rounded-md transition duration-300"
                     value={title}
                     onChange={handleTitleChange}
                 />
             </label>
-            <label className="flex flex-col">
+            <label className="flex flex-col text-base text-gray-950 font-extrabold">
                 Artista:
                 <input
-                    className="text-base text-black px-2 py-3 outline-none bg-transparent focus:bg-gray-100 rounded-md transition duration-300"
+                    className="text-base font-semibold text-black border-2 border-gray-700 px-2 py-3 outline-none bg-transparent focus:bg-gray-100 rounded-md transition duration-300"
                     value={artist}
                     onChange={handleArtistChange}
                 />
             </label>
-            <label className="flex flex-col">
-                Lyrics:
+            <label className="flex flex-col text-base text-gray-950 font-extrabold">
+                Letras:
                 <textarea
-                    rows={5}
-                    className="text-base text-black px-2 py-3 outline-none bg-transparent focus:bg-gray-100 rounded-md transition duration-300"
+                    rows={6}
+                    className="text-base font-semibold text-black border-2 border-gray-700 px-2 py-3 outline-none bg-transparent focus:bg-gray-100 rounded-md transition duration-300"
                     value={lyrics}
                     onChange={handleLyricsChange}
                 />
@@ -107,114 +120,34 @@ export default function CardBox() {
         <div
             className={`
                 main-box                
-                relative flex flex-col md:flex-row items-center justify-between
+                relative flex flex-col lg:flex-row items-center justify-between
                 gap-4
-                w-10/12 min-h-full md:min-h-[600px]
+                w-full min-h-full md:min-h-[600px]
                 
                 
             `}
         >
-            {/* <div
-                className={` 
-                bg-indigo-300 rounded-2xl px-3 py-4
-                transition-all duration-500
-                w-80 
-                ${className}
-            `}
-                style={{ backgroundColor: "#" + bgColor }}
-            >
-                <div
+            <div className="flex flex-col items-center gap-8 min-w-[40%]">
+                <div ref={ref} className="w-80">
+                    <Card
+                        lyrics={lyrics}
+                        title={title}
+                        artist={artist}
+                        bgColor={bgColor}
+                        coverUrl={coverUrl}
+                        logoUrl={logoUrl}
+                        textColor={textColor}
+                    />
+                </div>
+                <button
                     className={`
-                    header
-                    flex flex-row gap-3
-                    mb-5
-                `}
-                >
-                    <div>
-                        <Image
-                            src="/txt.jpg"
-                            alt="cover"
-                            width={32}
-                            height={32}
-                            className={`
-                            rounded-md
-                        `}
-                        />
-                    </div>
-                    <div
-                        className={`
-                        flex flex-col
+                        bg-emerald-500 text-white px-8 py-2 rounded-full
                     `}
-                    >
-                        <h2
-                            className={`
-                            font-black text-[13px]
-                        `}
-                        >
-                            ANTIFRAGILE
-                        </h2>
-                        <p
-                            className={`
-                            text-[10px]
-                        `}
-                        >
-                            LE SSERAFIM
-                        </p>
-                    </div>
-                </div>
-                <div
-                    className={`
-                    body
-                    flex flex-col gap-2
-                    text-sm font-bold
-                `}
+                    onClick={onButtonClick}
                 >
-                    <p>Caralho! Que pau ignorante</p>
-                    <p>Parece muito mais um vidro de desodorante</p>
-                    <p>Eu to chocada! Que pica exuberante</p>
-                    <p>Parece muito mais uma tromba de elefante</p>
-                    <p>Vem me arrombar gostoso</p>
-                </div>
-                <div
-                    className={`
-                    footer
-                    flex flex-row justify-between
-                    mt-5
-                `}
-                >
-                    
-                    <div>
-                        <Image
-                            src="/spotify-icons-logos/logos/01_RGB/02_PNG/Spotify_Logo_RGB_Black.png"
-                            alt="cover"
-                            width={70}
-                            height={24}
-                        />
-                    </div>
-                </div>
-            </div> */}
-            <div ref={ref}
-                className="w-80"
-            >
-                <Card
-                    lyrics={lyrics}
-                    title={title}
-                    artist={artist}
-                    bgColor={bgColor}
-                    coverUrl={coverUrl}
-                    logoUrl={logoUrl}
-                    textColor={textColor}
-                />
+                    Baixar
+                </button>
             </div>
-
-            <button
-                className={`
-                bg-indigo-500 text-white px-4 py-2 rounded-md
-            `}
-                onClick={onButtonClick}
-            >
-                Baixar
-            </button>
 
             <div className="sandbox">
                 <div className="sandbox__carousel">

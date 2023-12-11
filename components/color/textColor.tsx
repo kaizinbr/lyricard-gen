@@ -5,7 +5,7 @@ export default function TextNLogo({ setTextColor, setLogoUrl }: { setTextColor: 
     return (
         <div
             className={`
-                w-[348px] max-h-[348px] 
+                w-[348px] 
             `}
         >
             <div className="space-y-1 mb-4">

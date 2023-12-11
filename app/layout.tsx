@@ -26,7 +26,8 @@ export default function RootLayout({
     return (
         <html lang="pt-br">
             <body className={`
-                py-10
+                bg-[#f1f1f1] text-gray-900
+                
             `}>{children}</body>
         </html>
     );

@@ -38,16 +38,18 @@ const EmblaCarousel2: React.FC<PropType> = (props) => {
     } = usePrevNextButtons(emblaApi);
 
     return (
-        <div className="embla">
-            <div className="embla__viewport" ref={emblaRef}>
-                <div className="embla__container">
-                    {slides.map((s: any, i: any) => {
-                        return (
-                            <div key={i} className="w-[348px] ">
-                                {s}
-                            </div>
-                        );
-                    })}
+        <>
+            <div className="embla">
+                <div className="embla__viewport" ref={emblaRef}>
+                    <div className="embla__container">
+                        {slides.map((s: any, i: any) => {
+                            return (
+                                <div key={i} className="w-[348px] ">
+                                    {s}
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
 
@@ -61,7 +63,7 @@ const EmblaCarousel2: React.FC<PropType> = (props) => {
                     disabled={nextBtnDisabled}
                 />
             </div>
-        </div>
+        </>
     );
 };
 

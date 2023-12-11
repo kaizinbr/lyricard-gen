@@ -7,7 +7,8 @@ function Demo({ setBgColor }: { setBgColor: any }) {
     return (
         <div
             className={`
-                    w-[348px] max-h-[348px]            
+                    w-[348px] max-h-[348px]  
+                    px-4          
                 `}
         >
             <div className="space-y-1 mb-4">

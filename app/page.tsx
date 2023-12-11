@@ -36,7 +36,7 @@ export default function Home() {
 
     return (
         <main
-            className="relative flex min-h-screen flex-col items-center justify-center"
+            className="relative flex  flex-col items-center justify-center w-11/12 m-auto px-8 py-12"
             ref={elementRef}
         >
             <CardBox />
