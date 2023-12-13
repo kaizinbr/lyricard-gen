@@ -85,7 +85,7 @@ export default function Uploader({setCoverUrl}: {setCoverUrl: any}) {
                 </div>
                 <label
                     htmlFor="image-upload"
-                    className="group relative mt-2 flex h-32 cursor-pointer flex-col items-center justify-center rounded-md border border-gray-300 bg-white shadow-sm transition-all hover:bg-gray-50"
+                    className="group relative mt-2 flex h-32 cursor-pointer flex-col items-center justify-center rounded-lg  border-seashell-200 bg-seashell-50  transition-all hover:bg-gray-50"
                 >
                     <div
                         className="absolute z-[5] h-full w-full rounded-md"
@@ -186,13 +186,13 @@ export default function Uploader({setCoverUrl}: {setCoverUrl: any}) {
                 className={`${
                     saveDisabled
                         ? "cursor-not-allowed border-gray-200 bg-gray-100 text-gray-400"
-                        : "border-emerald-500 bg-emerald-500 text-white hover:bg-white hover:text-black"
+                        : "border-deluge-600 bg-deluge-600 text-seashell-50 hover:bg-seashell-50 hover:text-seashell-950"
                 } flex h-10 w-full items-center justify-center rounded-full border text-sm transition-all focus:outline-none`}
             >
                 {saving ? (
                     <LoadingDots color="#808080" />
                 ) : (
-                    <p className="text-sm">Confirm upload</p>
+                    <p className="text-sm">Enviar</p>
                 )}
             </button>
         </form>

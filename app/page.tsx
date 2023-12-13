@@ -40,9 +40,6 @@ export default function Home() {
             ref={elementRef}
         >
             <CardBox />
-            <div className="w-[60%] m-auto pt-11">
-                {/* <Carousel slides={slides} /> */}
-            </div>
             {/* <h1>hi</h1>
             <div
                 className="w-96 h-96 bg-red-400 rounded-lg p-4 items-center justify-center text-center text-gray-100"

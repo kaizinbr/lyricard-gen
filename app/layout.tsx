@@ -21,7 +21,7 @@ export default function RootLayout({
     return (
         <html lang="pt-br">
             <body className={`
-                bg-[#f1f1f1] text-gray-900
+                bg-seashell-100 text-seashell-950
                 
             `}>{children}</body>
         </html>

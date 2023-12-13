@@ -5,19 +5,25 @@
 @import url(../fonts/circular-spotify-text-font/stylesheet.css);
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+    --foreground-rgb: 241, 241, 241;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
 }
 
 body {
-  color: rgb(var(--background-start-rgb));
-  /* background: linear-gradient(
+    color: rgb(var(--background-start-rgb));
+    /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb)); */
-    font-family: 'Circular';
+    font-family: "Circular";
 }
 
+.w-color-sketch {
+    --sketch-background: #fdfdfd !important;
+    border: none !important;
+    border-radius: 10px !important;
+    box-shadow: none !important;
+}

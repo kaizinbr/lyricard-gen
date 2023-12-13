@@ -50,6 +50,8 @@ export default function Card({
                     className={` 
                         rounded-md 
                         overflow-hidden h-8 w-8
+                        flex justify-center items-center
+
                     `}
                 >
                     {/* por algum motivo que vai alem das minhas humildes capacidades, se usar o image do next dá problema pra baixar a foto */}
@@ -59,7 +61,7 @@ export default function Card({
                         width={32}
                         height={32}
                         className={`
-                            
+                            object-cover h-full w-full
                         `}
                         crossOrigin="anonymous"
                     />

@@ -57,14 +57,14 @@ export default function CardBox() {
         toPng(ref.current, { cacheBust: true, pixelRatio: 2, quality: 1 })
             .then((dataUrl) => {
                 const link = document.createElement("a");
-                link.download = `${title} - ${artist}.png`;
+                link.download = `lyricard.png`;
                 link.href = dataUrl;
                 link.click();
             })
             .catch((err) => {
                 console.log(err);
             });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ref]);
 
     let slides = [
@@ -78,10 +78,39 @@ export default function CardBox() {
             key={2}
         >
             <Uploader setCoverUrl={setCoverUrl} />
-            <TextNLogo
-            setTextColor={setTextColor}
-            setLogoUrl={setLogoUrl}
-        />
+        </div>,
+        <div
+            className={`
+                w-[348px] 
+                px-4   
+                flex flex-col gap-8
+            `}
+            key={2}
+        >
+            <TextNLogo setTextColor={setTextColor} setLogoUrl={setLogoUrl} />
+            <div className="relative">
+                <input
+                    className="text-violet-500 focus:ring-violet-300 border-gray-300 peer rounded-lg w-6 h-6 absolute top-4 left-4 "
+                    id="custom-checkbox"
+                    name="custom-checkbox"
+                    type="checkbox"
+                    value="custom-checkbox"
+                />
+                <label
+                    className=" cursor-pointer flex flex-row justify-between items-center  rounded-lg p-4  "
+                    htmlFor="custom-checkbox"
+                >
+                    <div className="flex flex-row justify-between items-center  ml-10 mr-4">
+                        <div>
+                            <h3 className="font-bold">Bordas arrendodadas</h3>
+                            {/* <p className="text-sm text-gray-400">
+                                Access to multiplayer games
+                            </p> */}
+                        </div>
+                    </div>
+                </label>
+            </div>
+            
         </div>,
         <form
             key={3}
@@ -91,7 +120,7 @@ export default function CardBox() {
             <label className="flex flex-col text-base text-gray-950 font-extrabold">
                 Título:
                 <input
-                    className="text-base font-semibold text-black border-2 border-gray-700 px-2 py-3 outline-none bg-transparent focus:bg-gray-100 rounded-md transition duration-300"
+                    className="text-base font-medium text-seashell-950 border border-transparent focus:border-deluge-600 px-3 py-2 mb-3 outline-none bg-seashell-50 focus:bg-white rounded-lg transition duration-300"
                     value={title}
                     onChange={handleTitleChange}
                 />
@@ -99,7 +128,7 @@ export default function CardBox() {
             <label className="flex flex-col text-base text-gray-950 font-extrabold">
                 Artista:
                 <input
-                    className="text-base font-semibold text-black border-2 border-gray-700 px-2 py-3 outline-none bg-transparent focus:bg-gray-100 rounded-md transition duration-300"
+                    className="text-base font-medium text-seashell-950 border border-transparent focus:border-deluge-600 px-3 py-2 mb-3 outline-none bg-seashell-50 focus:bg-white rounded-lg transition duration-300"
                     value={artist}
                     onChange={handleArtistChange}
                 />
@@ -108,7 +137,7 @@ export default function CardBox() {
                 Letras:
                 <textarea
                     rows={6}
-                    className="text-base font-semibold text-black border-2 border-gray-700 px-2 py-3 outline-none bg-transparent focus:bg-gray-100 rounded-md transition duration-300"
+                    className="text-base font-medium text-seashell-950 border border-transparent focus:border-deluge-600 px-3 py-2 mb-3 outline-none bg-seashell-50 focus:bg-white rounded-lg transition duration-300"
                     value={lyrics}
                     onChange={handleLyricsChange}
                 />
@@ -141,7 +170,9 @@ export default function CardBox() {
                 </div>
                 <button
                     className={`
-                        bg-emerald-500 text-white px-8 py-2 rounded-full
+                        bg-deluge-600 text-seashell-100 px-8 py-2 rounded-full border border-deluge-600
+                        transition duration-300
+                        hover:bg-seashell-50 hover:text-seashell-950
                     `}
                     onClick={onButtonClick}
                 >
