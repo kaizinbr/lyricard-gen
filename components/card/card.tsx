@@ -9,6 +9,10 @@ export default function Card({
     coverUrl,
     logoUrl,
     textColor,
+    fontSize,
+    pXY,
+    fontWeight,
+    border,
 }: {
     lyrics: string;
     title: string;
@@ -17,6 +21,10 @@ export default function Card({
     coverUrl: string;
     logoUrl: string;
     textColor: string;
+    fontSize: number;
+    pXY: string;
+    fontWeight: string;
+    border: string;
 }) {
     console.log(coverUrl);
 
@@ -32,10 +40,10 @@ export default function Card({
         // </div>
         <div
             className={` 
-                bg-indigo-300 rounded-2xl px-3 py-4
+                bg-indigo-300 
                 transition-all duration-500
                 w-80 
-                text-${textColor}
+                text-${textColor} ${pXY} ${border} text-black
             `}
             style={{ backgroundColor: bgColor }}
         >
@@ -91,8 +99,9 @@ export default function Card({
                 className={`
                     body
                     flex flex-col gap-2
-                    text-sm font-bold
+                    text-[${fontSize}px] font-${fontWeight}
                 `}
+                style={{ fontSize: `${fontSize}px`, fontWeight: `${fontWeight}` }}
             >
                 {newLyrics}
             </div>

@@ -7,7 +7,7 @@ function Demo({ setBgColor }: { setBgColor: any }) {
     return (
         <div
             className={`
-                    w-[348px] max-h-[348px]  
+                    w-[348px]  
                     px-4          
                 `}
         >

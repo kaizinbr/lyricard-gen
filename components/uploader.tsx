@@ -73,19 +73,19 @@ export default function Uploader({setCoverUrl}: {setCoverUrl: any}) {
 
     return (
         <form
-            className="grid gap-6 max-w-[316px] max-h-[348px]"
+            className="grid gap-6 max-w-[316px] "
             onSubmit={onSubmit}
         >
             <div>
                 <div className="space-y-1 mb-4">
                     <h2 className="text-xl font-semibold">Capa</h2>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-seashell-400">
                         Formatos: .png, .jpg
                     </p>
                 </div>
                 <label
                     htmlFor="image-upload"
-                    className="group relative mt-2 flex h-32 cursor-pointer flex-col items-center justify-center rounded-lg  border-seashell-200 bg-seashell-50  transition-all hover:bg-gray-50"
+                    className="group relative mt-2 flex h-32 cursor-pointer flex-col items-center justify-center rounded-lg  border-seashell-200 bg-seashell-500  transition-all hover:bg-gray-50"
                 >
                     <div
                         className="absolute z-[5] h-full w-full rounded-md"
@@ -133,14 +133,14 @@ export default function Uploader({setCoverUrl}: {setCoverUrl: any}) {
                             dragActive ? "border-2 border-black" : ""
                         } absolute z-[3] flex h-full w-full flex-col items-center justify-center rounded-md px-10 transition-all ${
                             data.image
-                                ? "bg-white/80 opacity-0 hover:opacity-100 hover:backdrop-blur-md"
-                                : "bg-white opacity-100 hover:bg-gray-50"
+                                ? "bg-seashell-500/80 opacity-0 hover:opacity-100 hover:backdrop-blur-md"
+                                : "bg-seashell-800 opacity-100 hover:bg-gray-700"
                         }`}
                     >
                         <svg
                             className={`${
                                 dragActive ? "scale-110" : "scale-100"
-                            } h-7 w-7 text-gray-500 transition-all duration-75 group-hover:scale-110 group-active:scale-95`}
+                            } h-7 w-7 text-seashell-300 transition-all duration-75 group-hover:scale-110 group-active:scale-95`}
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
                             height="24"
@@ -155,7 +155,7 @@ export default function Uploader({setCoverUrl}: {setCoverUrl: any}) {
                             <path d="M12 12v9"></path>
                             <path d="m16 16-4-4-4 4"></path>
                         </svg>
-                        <p className="mt-2 text-center text-sm text-gray-500">
+                        <p className="mt-2 text-center text-sm text-seashell-300">
                             Arraste um arquivo ou clique aqui
                         </p>
                         <span className="sr-only">Photo upload</span>
@@ -185,9 +185,9 @@ export default function Uploader({setCoverUrl}: {setCoverUrl: any}) {
                 disabled={saveDisabled}
                 className={`${
                     saveDisabled
-                        ? "cursor-not-allowed border-gray-200 bg-gray-100 text-gray-400"
-                        : "border-deluge-600 bg-deluge-600 text-seashell-50 hover:bg-seashell-50 hover:text-seashell-950"
-                } flex h-10 w-full items-center justify-center rounded-full border text-sm transition-all focus:outline-none`}
+                        ? "cursor-not-allowed border-seashell-300 bg-seashell-400 text-seashell-700"
+                        : "border-deluge-600 bg-deluge-600 text-seashell-50 hover:bg-seashell-500 Z"
+                } flex h-10 w-full items-center justify-center rounded-full border text-sm transition-all duration-500 focus:outline-none`}
             >
                 {saving ? (
                     <LoadingDots color="#808080" />

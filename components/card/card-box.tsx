@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState, useRef, useCallback, cloneElement } from "react";
-import Image from "next/image";
+import { useState, useRef, useCallback } from "react";
 import Card from "./card";
-import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
+import { toPng } from "html-to-image";
 import Uploader from "@/components/uploader";
 import Demo from "../color/colorWheel";
 import TextNLogo from "../color/textColor";
 import Carousel from "@/components/carousel/carousel";
+import { FontSize, Borders } from "../settings";
 
 import React from "react";
 import { EmblaOptionsType } from "embla-carousel-react";
@@ -15,14 +15,16 @@ import "../css/sandbox.css";
 import "../css/embla.css";
 
 const OPTIONS: EmblaOptionsType = {};
-const SLIDE_COUNT = 5;
-// const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
 
 export default function CardBox() {
     const [showCopy, setShowCopy] = useState(false);
+    const [fontSize, setFontSize] = useState(16);
+    const [pXY, setPXY] = useState('px-3 py-4');
+    const [fontWeight, setFontWeight] = useState('bold');
+    const [border, setBorder] = useState('rounded-2xl');
 
     const [bgColor, setBgColor] = useState("#A4B8D1");
-    const [textColor, setTextColor] = useState("#000000");
+    const [textColor, setTextColor] = useState("black");
     const [logoUrl, setLogoUrl] = useState(
         "/spotify-icons-logos/logos/01_RGB/02_PNG/Spotify_Logo_RGB_Black.png"
     );
@@ -88,56 +90,35 @@ export default function CardBox() {
             key={2}
         >
             <TextNLogo setTextColor={setTextColor} setLogoUrl={setLogoUrl} />
-            <div className="relative">
-                <input
-                    className="text-violet-500 focus:ring-violet-300 border-gray-300 peer rounded-lg w-6 h-6 absolute top-4 left-4 "
-                    id="custom-checkbox"
-                    name="custom-checkbox"
-                    type="checkbox"
-                    value="custom-checkbox"
-                />
-                <label
-                    className=" cursor-pointer flex flex-row justify-between items-center  rounded-lg p-4  "
-                    htmlFor="custom-checkbox"
-                >
-                    <div className="flex flex-row justify-between items-center  ml-10 mr-4">
-                        <div>
-                            <h3 className="font-bold">Bordas arrendodadas</h3>
-                            {/* <p className="text-sm text-gray-400">
-                                Access to multiplayer games
-                            </p> */}
-                        </div>
-                    </div>
-                </label>
-            </div>
-            
+            <FontSize setFontSize={setFontSize} fontSize={fontSize} setPXY={setPXY} setFontWeight={setFontWeight} />
+            <Borders border={border} setBorder={setBorder} />
         </div>,
         <form
             key={3}
             action=""
-            className="flex flex-col gap-2 px-4 w-[348px] max-h-[348px] "
+            className="flex flex-col gap-2 px-4 w-[348px] "
         >
-            <label className="flex flex-col text-base text-gray-950 font-extrabold">
+            <label className="flex flex-col text-base font-extrabold">
                 Título:
                 <input
-                    className="text-base font-medium text-seashell-950 border border-transparent focus:border-deluge-600 px-3 py-2 mb-3 outline-none bg-seashell-50 focus:bg-white rounded-lg transition duration-300"
+                    className="text-base font-medium  border border-transparent focus:border-deluge-600 px-3 py-2 mb-3 outline-none bg-seashell-800 focus:bg-seashell-700 rounded-lg transition duration-300"
                     value={title}
                     onChange={handleTitleChange}
                 />
             </label>
-            <label className="flex flex-col text-base text-gray-950 font-extrabold">
+            <label className="flex flex-col text-base font-extrabold">
                 Artista:
                 <input
-                    className="text-base font-medium text-seashell-950 border border-transparent focus:border-deluge-600 px-3 py-2 mb-3 outline-none bg-seashell-50 focus:bg-white rounded-lg transition duration-300"
+                    className="text-base font-medium  border border-transparent focus:border-deluge-600 px-3 py-2 mb-3 outline-none bg-seashell-800 focus:bg-seashell-700 rounded-lg transition duration-300"
                     value={artist}
                     onChange={handleArtistChange}
                 />
             </label>
-            <label className="flex flex-col text-base text-gray-950 font-extrabold">
+            <label className="flex flex-col text-base font-extrabold">
                 Letras:
                 <textarea
                     rows={6}
-                    className="text-base font-medium text-seashell-950 border border-transparent focus:border-deluge-600 px-3 py-2 mb-3 outline-none bg-seashell-50 focus:bg-white rounded-lg transition duration-300"
+                    className="text-base font-medium  border border-transparent focus:border-deluge-600 px-3 py-2 mb-3 outline-none bg-seashell-800 focus:bg-seashell-700 rounded-lg transition duration-300"
                     value={lyrics}
                     onChange={handleLyricsChange}
                 />
@@ -166,13 +147,17 @@ export default function CardBox() {
                         coverUrl={coverUrl}
                         logoUrl={logoUrl}
                         textColor={textColor}
+                        fontSize={fontSize}
+                        pXY={pXY}
+                        fontWeight={fontWeight}
+                        border={border}
                     />
                 </div>
                 <button
                     className={`
                         bg-deluge-600 text-seashell-100 px-8 py-2 rounded-full border border-deluge-600
-                        transition duration-300
-                        hover:bg-seashell-50 hover:text-seashell-950
+                        transition duration-500
+                        hover:bg-seashell-600 
                     `}
                     onClick={onButtonClick}
                 >

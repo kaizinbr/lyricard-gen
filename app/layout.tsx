@@ -21,7 +21,7 @@ export default function RootLayout({
     return (
         <html lang="pt-br">
             <body className={`
-                bg-seashell-100 text-seashell-950
+                bg-seashell-950 text-seashell-50
                 
             `}>{children}</body>
         </html>
